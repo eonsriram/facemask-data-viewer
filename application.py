@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from sqlops import SQLDB
 
 
-db = SQLDB()
+#db = SQLDB()
 application = Flask(__name__)
 
 
@@ -18,7 +18,9 @@ def process():
     user = request.form['user']
     password = request.form['pass']
 
+    db = SQLDB()
     cred = db.read("SELECT * FROM nie.credentials WHERE user = '{}';".format(user))
+    db.close()
 
     if len(cred) == 0:
         return render_template('login.html', data="Invalid User")
@@ -30,7 +32,9 @@ def process():
 
 @application.route('/table')
 def table():
+    db = SQLDB()
     data = db.read("SELECT * FROM nie.log;")
+    db.close()
     return render_template('table.html', data=data)
 
 
