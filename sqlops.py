@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS log(
 
 
 class SQLDB:
-    def __init__(self, host="localhost", user="root", password="password", database="nie"):
+    def __init__(self, host="mydb.chx9zm2fpo1c.ap-south-1.rds.amazonaws.com", user="dbadmin", password="password", database="nie"):
         self.host = host
         self.user = user
         self.password = password
