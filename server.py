@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from sqlops import SQLDB
 
 
-db = SQLDB(password='Aditya@123')
+db = SQLDB()
 app = Flask(__name__)
 
 
@@ -35,4 +35,4 @@ def table():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
