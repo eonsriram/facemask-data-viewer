@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My first PHP page</h1>
+
+
+<table>
+<tr><td>id</td><td>name</td><td>login</td><td>logout</td><td>inMask</td><td>outMask</td></tr>
+
+<?php
+
+$username = "root";
+$password = "password";
+$database = "nie";
+$conn = mysqli("localhost", $username, $password, $database);
+
+if ($conn-> connect_error){
+	die("Connection Failed: ".$conn-> connect_error);
+}
+
+$query = "SELECT * FROM log";
+
+$result = $conn->query($query);
+
+if ($result-> num_rows > 0){
+	while($row = $result-> fetch_assoc()){
+		echo "<tr><td>". $row['id'] ."</td><td>". $row['name'] ."</td><td>". $row[
+			'login'] ."</td><td>". $row['logout'] ."</td><td>". $row['inMask'] ."</td><td>". $row['outMask'] ."</td></tr>"
+	}
+	echo "</table>";
+}
+else {
+	echo "0 result";
+}
+
+$conn->close();
+?>
+
+</table>
+
+</body>
+</html>
